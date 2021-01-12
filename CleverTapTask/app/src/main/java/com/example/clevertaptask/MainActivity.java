@@ -2,6 +2,7 @@ package com.example.clevertaptask;
 
 import android.os.Bundle;
 
+import com.clevertap.android.sdk.CTWebInterface;
 import com.clevertap.android.sdk.CleverTapAPI;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -13,6 +14,8 @@ import android.view.View;
 
 import android.view.Menu;
 import android.view.MenuItem;
+
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,6 +31,14 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                CleverTapAPI cleverTap = null;
+
+               // cleverTap.pushEvent("Product viewed");
+
+                HashMap<String, Object> prodViewedAction = new HashMap<String, Object>();
+                prodViewedAction.put("Product Name", "Clever Tap");
+                prodViewedAction.put("Date", new java.util.Date());
+                cleverTap.pushEvent("Product viewed", prodViewedAction);
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
